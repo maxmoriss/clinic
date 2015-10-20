@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="entry-form">
+        <form action="" method="post">
+            <span class="error">{{ form.non_field_errors }}</span>
+            <div class="field">
+                <div class="field__label">
+                    Выберите врача 
+                    {% if form.errors.doctor %}<span class="error">{{ form.errors.doctor }}</span>{% endif %}
+                </div>
+                {{ form.doctor }}
+            </div>
+            <div class="field">
+                <div class="field__label">
+                    {% if form.errors.start_at %}<span class="error">{{ form.errors.start_at }}</span>{% endif %}
+                </div>
+                <input type="text" class="datepicker" placeholder="Выберите дату" value="{% if form.start_at.value %}{{ form.start_at.value }}{% endif %}">
+            </div>
+            <div class="field chose-time">
+                <div class="field__label">
+                    Выберите время
+                </div>
+                <div class="hours"></div>
+            </div>
+            <div class="field">
+                <div class="field__label">
+                    {% if form.errors.patient %}<span class="error">{{ form.errors.patient }}</span>{% endif %}
+                </div>
+                {{ form.patient }}
+                {{ form.start_at.as_hidden }}
+            </div>
+            <div class="field">
+                <input type="submit" value="Записаться">
+            </div>
+        </form>
+    </div>
+{% endblock %}
